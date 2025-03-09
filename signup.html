@@ -91,7 +91,60 @@
             z-index: 1000; /* التأكد من أن الشعار يكون فوق العناصر الأخرى */
         }
 
+        /* استعلامات الوسائط لتحسين العرض للأجهزة المحمولة */
+        @media (max-width: 1062px) and (max-height: 2100px) {
+            .signup {
+                width: 90%;
+                padding: 15px;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .signup img {
+                width: 60px;
+                height: 60px;
+                left: 120px;
+                bottom: 20px;
+            }
+
+            .signup label {
+                font-size: 16px;
+            }
+
+            .signup input,
+            .signup select {
+                font-size: 15px;
+            }
+
+            .signup input[type="submit"] {
+                font-size: 18px;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .signup {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .signup label {
+                font-size: 14px;
+            }
+
+            .signup input,
+            .signup select {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .signup input[type="submit"] {
+                font-size: 15px;
+                padding: 12px;
+            }
+        }
     </style>
+  
 </head>
 
 <body>

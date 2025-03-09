@@ -5,80 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>West Riyadh Neighborhoods</title>
     <style>
-
         body {
-                    background: url('PNU.jpg'); /* أضفت صورة خلفية هنا */
-                    background-size: cover;
-                    font-family: sans-serif;
-                    margin: 0;
-                    padding: 0;
-                    
-                }
-                .logo {
+            background: url('PNU.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #50ec72;
+        }
+
+        .logo {
             position: fixed;
-            top: 10px;  /* المسافة من أعلى الصفحة */
-            right: 10px; /* المسافة من اليمين */
-            width: 100px;  /* عرض الشعار */
-            height: 100px; /* ارتفاع الشعار */
-            z-index: 1000; /* التأكد من أن الشعار يكون فوق العناصر الأخرى */
-        }     
-                body {
-                    font-family: Arial, sans-serif;
-                    background-color: #f7f2f2;
-                    margin: 0;
-                    padding: 0;
-                    color: #50ec72;
-                }
-        
-                .directions {
-                    width: 80%;
-                    margin: 20px auto;
-                    padding: 20px;
-                    background-color: #00000081;
-                    box-shadow: 0 4px 10px rgba(5, 5, 5, 0.384);
-                    border-radius: 8px;
-                }
-        
-                .title {
-                    text-align: center;
-                    color: #ffffff;
-                    font-size: 2.5rem;
-                    margin-bottom: 40px;
-                }
-        
-                .subtitle {
-                    font-size: 1.8rem;
-                    color: #ffffff;
-                    margin-bottom: 10px;
-                }
-        
-                .neighborhood {
-                    font-size: 1.2rem;
-                    margin: 5px 0;
-                    padding: 8px;
-                    background-color: #5997998f;
-                    border-left: 5px solid #b94fff;
-                    transition: all 0.3s ease;
-                }
-        
-                .neighborhood:hover {
-                    background-color: #f1f1f1;
-                    transform: scale(1.02);
-                }
-        
-                .north, .east, .south, .west {
-                    margin-bottom: 30px;
-                }
-        
-                .north {
-                    background-color:  #e5f4f5;
-                    padding: 15px;
-                    border-radius: 8px;
-                }
-                .back-btn {
+            top: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            z-index: 1000;
+        }
+
+        .directions {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Improve contrast for readability */
+            box-shadow: 0 4px 10px rgba(5, 5, 5, 0.384);
+            border-radius: 8px;
+        }
+
+        .title {
+            text-align: center;
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .neighborhood {
+            font-size: 1.2rem;
+            margin: 5px 0;
+            padding: 8px;
+            background-color: rgba(89, 151, 153, 0.56); /* Slight transparency */
+            border-left: 5px solid #b94fff;
+            transition: all 0.3s ease;
+        }
+
+        .neighborhood:hover {
+            background-color: #f1f1f1;
+            transform: scale(1.02);
+        }
+
+        .north, .east, .south, .west {
+            margin-bottom: 30px;
+        }
+
+        .north {
+            background-color:  #e5f4f5;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .back-btn {
             display: inline-block;
             padding: 12px 25px;
-            background-color:#0b7886;
+            background-color: #0b7886;
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -86,10 +80,47 @@
             margin-top: 20px;
             transition: background-color 0.3s ease;
         }
+
         .back-btn:hover {
             background-color: #45a049;
         }
-        </style>
+
+        /* Mobile responsiveness */
+        @media (max-width: 1062px) and (max-height: 2100px) {
+            .directions {
+                width: 90%; /* Full width on mobile */
+                margin: 10px; /* Reduce margins */
+                padding: 15px; /* Less padding */
+            }
+
+            .title {
+                font-size: 2rem; /* Smaller font size for mobile */
+                margin-bottom: 20px;
+            }
+
+            .subtitle {
+                font-size: 1.6rem; /* Slightly smaller subtitle */
+                margin-bottom: 8px;
+            }
+
+            .neighborhood {
+                font-size: 1rem; /* Smaller font size for neighborhood */
+                padding: 6px;
+            }
+
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 14px; /* Smaller button font size */
+                margin-top: 15px; /* Less space from bottom */
+            }
+
+            .logo {
+                width: 80px; /* Smaller logo size for mobile */
+                height: 80px;
+            }
+        }
+
+    </style>
 </head>
 <body>
     <img src="logo grad.jpg" class="logo" alt="Logo">

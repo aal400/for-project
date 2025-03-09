@@ -3,16 +3,14 @@
     
     <title>East Riyadh Neighborhoods</title>
     <style>
-
-body {
+        body {
             background: url('PNU.jpg'); /* أضفت صورة خلفية هنا */
             background-size: cover;
             font-family: sans-serif;
             margin: 0;
             padding: 0;
-            
         }
-       
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f7f2f2;
@@ -66,6 +64,7 @@ body {
             padding: 15px;
             border-radius: 8px;
         }
+
         .back-btn {
             display: inline-block;
             padding: 12px 25px;
@@ -77,9 +76,11 @@ body {
             margin-top: 20px;
             transition: background-color 0.3s ease;
         }
+
         .back-btn:hover {
             background-color: #45a049;
         }
+
         .logo {
             position: fixed;
             top: 10px;  /* المسافة من أعلى الصفحة */
@@ -88,7 +89,74 @@ body {
             height: 100px; /* ارتفاع الشعار */
             z-index: 1000; /* التأكد من أن الشعار يكون فوق العناصر الأخرى */
         }
-</style>
+
+        /* استعلامات الوسائط لتحسين التصميم للأجهزة المحمولة */
+        @media (max-width: 1062px) and (max-height: 2100px) {
+            .directions {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .neighborhood {
+                font-size: 1rem;
+                padding: 6px;
+            }
+
+            .neighborhood:hover {
+                transform: scale(1.05);
+            }
+
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .directions {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .title {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .neighborhood {
+                font-size: 0.9rem;
+                padding: 5px;
+            }
+
+            .back-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
     </head>
     <body>
 

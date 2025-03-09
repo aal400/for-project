@@ -31,6 +31,7 @@
             display: flex;
             justify-content: space-between;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .section {
@@ -129,7 +130,6 @@
             cursor: pointer;
         }
 
-       
         .notification {
             display: none;
             background: rgba(255, 255, 255, 0.9);
@@ -153,7 +153,81 @@
             margin-bottom: 30px;
             text-align: center;
         }
+
+        /* استعلامات الوسائط للأجهزة المحمولة */
+        @media (max-width: 1062px) and (max-height: 2100px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .section {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .send-btn {
+                font-size: 14px;
+            }
+
+            .chat-header {
+                font-size: 1rem;
+            }
+
+            .chat-box {
+                height: 150px;
+            }
+
+            .chat-input input {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .chat-input button {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .notification {
+                width: 90%;
+                top: 15%;
+            }
+
+            .title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 1.2rem;
+            }
+
+            .send-btn {
+                font-size: 12px;
+            }
+
+            .chat-header {
+                font-size: 1rem;
+            }
+
+            .chat-input input {
+                font-size: 12px;
+            }
+
+            .chat-input button {
+                font-size: 12px;
+            }
+
+            .notification {
+                width: 90%;
+                top: 20%;
+            }
+        }
     </style>
+
+       
 </head>
 <body>
     

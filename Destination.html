@@ -83,6 +83,7 @@
         .bus-schedule-button:hover {
             background-color: #177a94;
         }
+
         .logo {
             position: fixed;
             top: 10px;  /* المسافة من أعلى الصفحة */
@@ -90,6 +91,49 @@
             width: 100px;  /* عرض الشعار */
             height: 100px; /* ارتفاع الشعار */
             z-index: 1000; /* التأكد من أن الشعار يكون فوق العناصر الأخرى */
+        }
+
+        /* استعلامات الوسائط للأجهزة المحمولة */
+        @media (max-width: 1062px) and (max-height: 2100px) {
+            .header {
+                font-size: 28px; /* تصغير حجم العنوان */
+                top: 10px; /* تعديل الموقع */
+            }
+
+            .direction-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .direction-box {
+                width: 45%;
+                padding: 20px;
+                font-size: 0.9rem;
+            }
+
+            .bus-schedule-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+
+        /* في حال كانت الشاشة أصغر من 600px */
+        @media (max-width: 600px) {
+            .direction-box {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .header {
+                font-size: 24px;
+                top: 5px;
+            }
+
+            .bus-schedule-button {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
         }
     </style>
 </head>

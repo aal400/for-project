@@ -8,15 +8,16 @@
         body {
             font-family: 'Tajawal', sans-serif;
             text-align: center;
-            background: url('PNU.jpg') no-repeat center center fixed; 
+            background: url('PNU2.jpg') no-repeat center center fixed;
             background-size: cover;
             padding: 50px;
         }
         h1 {
-            color: #209db3;
+            color: #ffffff;
             margin-bottom: 40px;
             text-align: center;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 32px;  /* Adjust font size for desktop */
         }
         .container {
             display: flex;
@@ -57,12 +58,11 @@
             justify-content: space-between;
             align-items: center;
             font-size: 4px;
-            border-top: 2px solid #209db3; 
+            border-top: 2px solid #209db3;
         }
         footer .footer-text {
             flex: 1;
             text-align: left;
-           
         }
         footer .contact-icons {
             display: flex;
@@ -84,14 +84,44 @@
             height: 25px;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
-    
         footer .footer-text p {
-       font-size: 13px;  
-       font-weight: 300;  
-       color: rgb(100, 228, 61);
-       margin: 0;
+            font-size: 13px;
+            font-weight: 300;
+            color: rgb(100, 228, 61);
+            margin: 0;
         }
 
+        /* Media Queries for mobile screens */
+        @media (max-width: 1062px) {
+            body {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 24px; /* Adjust font size for smaller screens */
+            }
+            .container {
+                flex-direction: column; /* Stack items vertically on small screens */
+                gap: 20px;
+            }
+            img {
+                width: 150px; /* Make images smaller on mobile */
+                height: 150px;
+            }
+            p {
+                font-size: 20px; /* Adjust text size for mobile */
+            }
+            footer {
+                flex-direction: column; /* Stack footer content vertically on small screens */
+                align-items: center;
+            }
+            footer .contact-icons {
+                gap: 10px;
+            }
+            footer .footer-text p {
+                font-size: 12px;
+            }
+        }
+    </style>
     </style>
 </head>
 <body>
