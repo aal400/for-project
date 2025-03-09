@@ -1,0 +1,205 @@
+<html>
+<head>
+<title>Bus schedule</title>
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        h3 {
+            color: #a566df;
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        th {
+            background-color: #087074;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        p {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #map{
+            width: 100%;  /* عرض الخريطة بالكامل */
+            height: 300px; /* ارتفاع الخريطة */
+            margin-top: 20px;
+        }
+        .logo {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            z-index: 1000;
+        }
+
+        /* استعلامات الوسائط للأجهزة المحمولة */
+        @media (max-width: 1062px) and (max-height: 2100px) {
+            h3 {
+                font-size: 22px;
+                margin-top: 10px;
+            }
+
+            table {
+                width: 90%;
+            }
+
+            th, td {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+
+            #map {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h3 {
+                font-size: 18px;
+            }
+
+            table {
+                width: 95%;
+            }
+
+            th, td {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            p {
+                font-size: 10px;
+            }
+
+            #map {
+                height: 200px;
+            }
+        }
+    </style>
+</style>
+</head>
+<body>
+  <img src="logo grad.jpg" class="logo" alt="Logo">
+
+<h3>Bus Schedule</h3>
+<table border="6">
+<tr>
+<th>N</th>
+<th>Period</th>
+<th>Departure time </th>
+</tr>
+<tr>
+<td> 1 </td>
+<td> First Period </td>
+<td>Buses leave at 1:15p.m </td>
+</tr>
+<tr>
+<td> 2 </td>
+<td>Second period</td>
+<td>Buses leave at 3:10p.m </td>
+</tr>
+<tr>
+<td> 3 </td>
+<td> Third period </td>
+<td>Buses leave at 5:10p.m </td>
+</tr>
+</table>
+
+<br><br>
+
+<h3>Schedule of bus movement during the testing period</h3>
+ <table border="6">
+<tr>
+<th>N</th>
+<th>Period</th>
+<th>Departure time </th>
+</tr>
+<tr>
+<td> 1 </td>
+<td> First Period </td>
+<td>Buses leave at 11:00a.m </td>
+</tr>
+<tr>
+<td> 2 </td>
+<td>Second period</td>
+<td>Buses leave at 1:30p.m </td>
+</tr>
+<tr>
+<td> 3 </td>
+<td> Third period </td>
+<td>Buses leave at 4:00p.m </td>
+</tr>
+</table>
+
+<p>(Bus timings vary during the news period)
+It's not always fixed.</p>
+
+<!-- خريطة Google Maps -->
+<div id="map"></div>
+
+<script>
+// تهيئة الخريطة عند تحميل الصفحة
+function initMap() {
+  var marker;
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat:24.859431327580612, lng: 46.71545706338152}, // إحداثيات الرياض (مثال)
+    zoom: 14
+  });
+
+  marker = new google.maps.Marker({
+
+    position:{lat:24.859431327580612, lng: 46.71545706338152},
+    titel:'PNU A5',
+    map:map
+   
+  })
+}
+</script>
+
+<!-- تحميل Google Maps API مع المفتاح الخاص بك -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdSQLg8eD9moGwrPbYrgILAO4Q1p9x8eE&callback=initMap" async defer></script>
+
+</body>
+</html>
+

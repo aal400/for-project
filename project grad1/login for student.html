@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            background: url('PNU.jpg'); /* أضفت صورة خلفية هنا */
+            background-size: cover;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo {
+            position: fixed;
+            top: 10px;  
+            right: 10px; /* المسافة من اليمين */
+            width: 100px;  /* عرض الشعار */
+            height: 100px; /* ارتفاع الشعار */
+            z-index: 1000; 
+        }
+
+        .login {
+            width: 450px;
+            height: 550px;
+            padding: 0px 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        .login img {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            bottom: 50px;
+            left: 120px;
+        }
+
+        .login h1 {
+            margin: 0;
+            padding: 2px 2px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .login label {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .login input {
+            width: 100%;
+            margin: 10px 0px;
+        }
+
+        .login input[type="text"],
+        .login input[type="password"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            background: transparent;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+
+        .login input[type="submit"] {
+            border: none;
+            outline: none;
+            color: #fff;
+            height: 40px;
+            font-size: 20px;
+            background: #0b9e97;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        .login input[type="submit"]:hover {
+            transform: scale(1.1);
+        }
+
+        .login a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .signup {
+            text-align: center;
+            color: #fff;
+        }
+        .login img {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            bottom: 50px;
+            left: 120px;
+            border-radius: 50%;  /* جعل الصورة دائرية */
+            margin-bottom: 20px;
+          
+            border: 3px solid #fff;  /* إضافة حد أبيض حول الصورة */
+        }
+        @media (max-width: 768px) {
+            .login {
+                width: 80%;
+                height: auto;
+                padding: 20px;
+            }
+
+            .login img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .login h1 {
+                font-size: 24px;
+            }
+
+            .login input[type="text"],
+            .login input[type="password"] {
+                font-size: 14px;
+            }
+
+            .login input[type="submit"] {
+                font-size: 18px;
+            }
+
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+    <link rel="shortcut icon" href="logo grad.jpg" type="image/x-icon">
+</head>
+
+<body>
+    
+    <img src="logo grad.jpg" class="logo" alt="Logo">
+
+    <div class="login">
+        <img src="s1.png" alt="Profile Picture" class="profile-picture">
+        <h1>Login</h1>
+       
+        <form onsubmit="return loginCheck(event)">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required placeholder="Enter Name">
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required placeholder="Enter Password">
+
+            <input type="submit" value="Login" onmousedown="buttonPressed(event)" onmouseup="buttonReleased(event)">
+        </form>
+
+        <div class="signup">
+            You don't have an account? <br>
+            <a href="signup.html">signup</a>
+        </div>
+    </div>
+
+    <script>
+        function buttonPressed() {
+            const button = document.querySelector('input[type="submit"]');
+            button.style.backgroundColor = 'Spring Green'; 
+        }
+
+        function buttonReleased() {
+            const button = document.querySelector('input[type="submit"]');
+            button.style.backgroundColor = '#107fac'; 
+        }
+
+        function loginCheck(event) {
+            event.preventDefault(); // لمنع إرسال النموذج بشكل افتراضي
+
+            // الحصول على البيانات المدخلة من المستخدم
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // بمجرد أن يضغط المستخدم على تسجيل الدخول، سيتم التوجيه إلى الصفحة الرئيسية دون التحقق من القيم
+            window.location.href = "Terms and Condition.html";
+        }
+    </script>
+</body>
+
+</html>

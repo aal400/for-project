@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisor - Send Notifications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('PNU.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+        .title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #4caf50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .notification-box {
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .notification-box h3 {
+            margin-bottom: 15px;
+            color: #4caf50;
+        }
+        .notification-box select,
+        .notification-box textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .send-notification-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .send-notification-btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #0b7886;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+        .alert {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="title">Supervisor - Send Notifications</h2>
+
+        <!-- Notifications to all students -->
+        <div class="notification-box">
+            <h3>Send Notification to All Students</h3>
+            <label for="message-students">Enter Message for All Students:</label>
+            <textarea id="message-students" rows="4" placeholder="Type your message here..."></textarea>
+            <button class="send-notification-btn" onclick="sendNotificationToStudents()">Send Notification to All Students</button>
+        </div>
+
+        <!-- Notifications to driver -->
+        <div class="notification-box">
+            <h3>Send Notification to Drivers</h3>
+            <label for="message-driver">Enter Message for Drivers:</label>
+            <textarea id="message-driver" rows="4" placeholder="Type your message for the driver..."></textarea>
+            <button class="send-notification-btn" onclick="sendNotificationToDriver()">Send Notification to Driver</button>
+        </div>
+
+      
+    </div>
+
+    <script>
+        // Function to send notification to all students
+        function sendNotificationToStudents() {
+            var message = document.getElementById("message-students").value;
+
+            if (message.trim() === "") {
+                alert("Please enter a message before sending.");
+            } else {
+                alert("Notification sent to all students: " + message);
+                // Here, you can also implement AJAX or a backend API call to actually send the notification to all students.
+            }
+        }
+
+        // Function to send notification to driver
+        function sendNotificationToDriver() {
+            var message = document.getElementById("message-driver").value;
+
+            if (message.trim() === "") {
+                alert("Please enter a message for the driver.");
+            } else {
+                alert("Notification sent to Driver: " + message);
+                // Again, implement AJAX or a backend API call for actual functionality.
+            }
+        }
+    </script>
+
+</body>
+</html>

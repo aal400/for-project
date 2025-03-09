@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direction Links</title>
+    <h1 class="header">Select Your Destination</h1>
+
+    <style>
+        body {
+            background: url('PNU.jpg'); /* خلفية */
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .direction-container {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            max-width: 800px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .direction-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .direction-box:hover {
+            transform: scale(1.1);
+            background-color: #1e99b8; /* تغيير اللون عند المرور */
+        }
+
+        .direction-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .direction-box p {
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            font-size: 36px;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+
+        .bus-schedule-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #1e99b8;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .bus-schedule-button:hover {
+            background-color: #177a94;
+        }
+
+        .logo {
+            position: fixed;
+            top: 10px;  /* المسافة من أعلى الصفحة */
+            right: 10px; /* المسافة من اليمين */
+            width: 100px;  /* عرض الشعار */
+            height: 100px; /* ارتفاع الشعار */
+            z-index: 1000; /* التأكد من أن الشعار يكون فوق العناصر الأخرى */
+        }
+
+        /* استعلامات الوسائط للأجهزة المحمولة */
+        @media (max-width: 1062px) and (max-height: 2100px) {
+            .header {
+                font-size: 28px; /* تصغير حجم العنوان */
+                top: 10px; /* تعديل الموقع */
+            }
+
+            .direction-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .direction-box {
+                width: 45%;
+                padding: 20px;
+                font-size: 0.9rem;
+            }
+
+            .bus-schedule-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+
+        /* في حال كانت الشاشة أصغر من 600px */
+        @media (max-width: 600px) {
+            .direction-box {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .header {
+                font-size: 24px;
+                top: 5px;
+            }
+
+            .bus-schedule-button {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="logo grad.jpg" class="logo" alt="Logo">
+
+    <div class="direction-container">
+      <div class="direction-box" onclick="goToPage('north')">
+          <h3>North</h3>
+            <p>Heading towards the North</p>
+     </div>
+        <div class="direction-box" onclick="goToPage('west')">
+            <h3>West</h3>
+          <p>Heading towards the West</p>
+        </div>
+        <div class="direction-box" onclick="goToPage('south')">
+          <h3>South</h3>
+            <p>Heading towards the South</p>
+        </div>
+        <div class="direction-box" onclick="goToPage('east')">
+         <h3>East</h3>
+            <p>Heading towards the East</p>
+    </div>
+    </div>
+
+    <!-- زر الانتقال إلى صفحة مواعيد الباص -->
+    <button class="bus-schedule-button" onclick="window.location.href='Driver schedule.html'">
+        View Bus Schedule
+    </button>
+
+    <script>
+        function goToPage(direction) {
+            // بناء الرابط بناءً على الاتجاه
+            let page = direction + ".html"; // مثل north.html، west.html، الخ
+
+            // توجيه المستخدم إلى الصفحة المناسبة
+            window.location.href = page;
+        }
+
+        alert("Welcome to Noura Path");
+    </script>
+</body>
+</html>
