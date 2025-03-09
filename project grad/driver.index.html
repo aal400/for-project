@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Notification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            background: url('PNU.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .section {
+            width: 48%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            text-align: center;
+            color: #4caf50;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .notification, .chat-container {
+            margin-top: 20px;
+        }
+
+        .radio-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .radio-group label {
+            display: block;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .send-btn {
+            background: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .send-btn:hover {
+            background: #45a049;
+        }
+
+        .chat-header {
+            background: #4caf50;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .chat-box {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 10px;
+            text-align: right;
+            min-height: 120px;
+            overflow-y: auto;
+            height: 200px;
+        }
+
+        .message {
+            background: #d3d3d3;
+            padding: 10px;
+            border-radius: 10px;
+            display:block;
+            margin-bottom: 10px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chat-input button {
+            background: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+       
+        .notification {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            width: 350px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 10%;
+            text-align: left;
+        }
+
+        .notification span {
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #4caf50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2 class="title">Driver - Send Notifications and Chat</h2>
+<div class="container">
+    
+    <div class="section">
+        <h2>Send Notifications</h2>
+        <div class="radio-group">
+            <label><input type="radio" name="status" value="The bus will be delayed"> The bus will be delayed</label>
+            <label><input type="radio" name="status" value="The bus is full"> The bus is full</label>
+            <div id="delay-time" style="display: none;">
+                <label for="delay-input">How many minutes will the bus be delayed?</label>
+                <input type="number" id="delay-input" placeholder="Enter minutes" min="1" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-top: 10px;">
+            </div>
+        </div>
+        <button class="send-btn" onclick="sendNotification()">Send to all</button>
+    </div>
+
+  
+    <div class="section">
+        <h2>Chat with Students</h2>
+        <div class="chat-container">
+            <div class="chat-header">Chat with the students</div>
+
+            <div class="chat-box" id="chatBox">
+                <div class="message">Hello, please send me your location here</div>
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Write your message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="notification" id="notification">
+    <span>🚨 Sending the notification:</span> <span id="notificationText"></span>
+    <button onclick="closeNotification()" class="send-btn" style="margin-top:10px;">Agree</button>
+</div>
+
+<script>
+    // Function to show delay input field when 'The bus will be delayed' is selected
+    document.querySelectorAll('input[name="status"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === "The bus will be delayed") {
+                document.getElementById("delay-time").style.display = "block";
+            } else {
+                document.getElementById("delay-time").style.display = "none";
+            }
+        });
+    });
+
+    // Function to send notification
+    function sendNotification() {
+        let selectedOption = document.querySelector('input[name="status"]:checked');
+        if (selectedOption) {
+            let notificationMessage = selectedOption.value;
+            if (selectedOption.value === "The bus will be delayed") {
+                let delayMinutes = document.getElementById("delay-input").value;
+                if (delayMinutes) {
+                    notificationMessage += " for " + delayMinutes + " minutes";
+                } else {
+                    alert("Please specify the delay time.");
+                    return;
+                }
+            }
+            document.getElementById("notificationText").textContent = notificationMessage;
+            document.getElementById("notification").style.display = "block";
+        } else {
+            alert("Please select an option first.");
+        }
+    }
+
+    // Function to close notification popup
+    function closeNotification() {
+        document.getElementById("notification").style.display = "none";
+    }
+
+    // Function to send a chat message
+    function sendMessage() {
+        let messageInput = document.getElementById("message-input");
+        let chatBox = document.getElementById("chatBox");
+        if (messageInput.value.trim() !== "") {
+            let message = document.createElement("div");
+            message.className = "message";
+            message.textContent = messageInput.value;
+            chatBox.appendChild(message);
+            messageInput.value = "";
+        }
+    }
+   let studentCount = 0;
+
+    window.addEventListener("message", function (event) {
+        if (event.data === "studentRegistered") {
+            studentCount++;
+            let notificationBox = document.getElementById("studentNotification");
+            notificationBox.textContent = `🚨Student number was registered ${studentCount}`;
+            notificationBox.style.display = "block";
+            setTimeout(() => {
+                notificationBox.style.display = "none";
+            }, 5000);
+        }
+    });
+</script>
+
+</body>
+</html>

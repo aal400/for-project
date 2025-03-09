@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuwaiq Driver Info</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('PNU.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 30px;
+        }
+        .title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b7886;
+            margin-bottom: 30px;
+            width: 100%;
+            text-align: center;
+            text-shadow: #333;
+        }
+        .info-box {
+            width: 250px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        .info-box:hover {
+            transform: scale(1.05);
+        }
+        .info-box p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            font-weight: 500;
+            color: #555;
+        }
+        .info-box span {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .info-box a {
+            color: #21b8f3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color:#0b7886;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+        .logo {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            z-index: 1000;
+        }
+
+        .chat-icon {
+            width: 60px;
+            height: 50px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* Chat Section */
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        .chat-header {
+            background: #0e7f83;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+         .chat-box {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f9f9f9;
+            text-align: left;
+        }
+
+
+        .message {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
+            width: fit-content;
+        }
+
+
+        
+                .driver {
+            background: #ddd;
+            align-self: flex-start;
+        }
+
+        .student {
+            background: #d1c4e9;
+            align-self: flex-end;
+        }
+
+
+               
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+
+
+       .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input button {
+            background:#0e7f83;
+            color: white;
+            border: 20%;
+            border-color:white;
+            padding: 10px;
+            cursor: pointer;
+        }
+ /* Passenger Number Notice */
+        .bus-info {
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+ .hidden {
+            display: none;
+            color: red;
+            font-weight: bold;
+        }
+ .chat-header {
+            background:#0e7f83;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <img src="logo grad.jpg" class="logo" alt="Logo">
+
+    <div class="container">
+        <h2 class="title">Tuwaiq Driver Information</h2>
+
+        <!-- Driver 1 -->
+        <div class="info-box">
+            <p><span>Driver Name:</span> Naser</p>
+            <p><span>Phone:</span> <a href="tel:0500000004">0500000004</a></p>
+            <p><span>Nationality:</span> Saudi Arabia</p>
+            <p><span>Bus Number:</span> 20</p>
+            <p><span>Period Time:</span> 1:00pm-8:00am</p>
+            
+            <img src="Chat.png" alt="Chat" class="chat-icon" onclick="openChat()">
+        </div>
+
+        <!-- Driver 2 -->
+        <div class="info-box">
+            <p><span>Driver Name:</span> Ahmed</p>
+            <p><span>Phone:</span> <a href="tel:0500000005">0500000005</a></p>
+            <p><span>Nationality:</span> Egypt</p>
+            <p><span>Bus Number:</span> 21</p>
+            <p><span>Period Time:</span> 9:00am - 5:00pm</p>
+        
+            <img src="Chat.png" alt="Chat" class="chat-icon" onclick="openChat()">
+        </div>
+
+        <!-- Driver 3 -->
+        <div class="info-box">
+            <p><span>Driver Name:</span> Mohammed</p>
+            <p><span>Phone:</span> <a href="tel:0500000007">0500000007</a></p>
+            <p><span>Nationality:</span> Saudi Arabia</p>
+            <p><span>Bus Number:</span> 23</p>
+            <p><span>Period Time:</span> 3:00pm - 8:00am</p>
+            <img src="Chat.png" alt="Chat" class="chat-icon" onclick="openChat()">
+        </div>
+    </div>
+
+    <a href="west.html" class="back-btn">Back</a>
+
+    <div class="chat-container" id="chat-container">
+ <!-- Passenger Number Notice -->
+        <div class="bus-info">
+            <h2>Current passenger N:<span id="passenger-count">0</span> / 25</h2>
+            <p id="full-alert" class="hidden">🚨The bus is full.!</p>
+        </div>
+
+  <!-- Chat Section -->
+    
+        <div class="chat-header">Chat with the driver</div>
+        <div class="chat-box" id="chat-box">
+            <p class="message driver">Hello, Send me your location here</p>
+
+        </div>
+
+
+        <div class="chat-input">
+           <input type="text" id="message-input" placeholder="Write your message...">
+               <button onclick="sendMessage()">Send</button>
+                <button onclick="addPassenger()">After sending the location, please click here to register</button>
+    
+        </div>
+    </div>
+
+    <script>
+        function openChat() {
+            var chatContainer = document.getElementById("chat-container");
+            // Toggle the display of chat container
+            if (chatContainer.style.display === "flex") {
+                chatContainer.style.display = "none";
+            } else {
+                chatContainer.style.display = "flex";
+            }
+        }
+
+        let passengerCount = 0; // Initial count
+
+        // Function to send a message
+        function sendMessage() {
+            let input = document.getElementById("message-input");
+            let message = input.value.trim();
+            
+            if (message !== "") {
+                let chatBox = document.getElementById("chat-box");
+                
+                // Add the message to the chat
+                let newMessage = document.createElement("p");
+                newMessage.classList.add("message", "student");
+                newMessage.textContent = message;
+                chatBox.appendChild(newMessage);
+
+                // Clear the input field
+                input.value = "";
+                
+                // Move the chat to the last message
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+
+        // Function to add a passenger (increase the count)
+        function addPassenger() {
+            if (passengerCount < 25) {
+                passengerCount++; // Increase passenger count
+                document.getElementById("passenger-count").textContent = passengerCount; // Update displayed count
+                
+                // If the bus is full, show the alert
+                if (passengerCount === 25) {
+                    document.getElementById("full-alert").classList.remove("hidden");
+                }
+            }
+        }
+
+            
+    </script>
+</body>
+</html>
