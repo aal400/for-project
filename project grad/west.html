@@ -1,0 +1,119 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>West Riyadh Neighborhoods</title>
+    <style>
+
+        body {
+                    background: url('PNU.jpg'); /* أضفت صورة خلفية هنا */
+                    background-size: cover;
+                    font-family: sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    
+                }
+                .logo {
+            position: fixed;
+            top: 10px;  /* المسافة من أعلى الصفحة */
+            right: 10px; /* المسافة من اليمين */
+            width: 100px;  /* عرض الشعار */
+            height: 100px; /* ارتفاع الشعار */
+            z-index: 1000; /* التأكد من أن الشعار يكون فوق العناصر الأخرى */
+        }     
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f7f2f2;
+                    margin: 0;
+                    padding: 0;
+                    color: #50ec72;
+                }
+        
+                .directions {
+                    width: 80%;
+                    margin: 20px auto;
+                    padding: 20px;
+                    background-color: #00000081;
+                    box-shadow: 0 4px 10px rgba(5, 5, 5, 0.384);
+                    border-radius: 8px;
+                }
+        
+                .title {
+                    text-align: center;
+                    color: #ffffff;
+                    font-size: 2.5rem;
+                    margin-bottom: 40px;
+                }
+        
+                .subtitle {
+                    font-size: 1.8rem;
+                    color: #ffffff;
+                    margin-bottom: 10px;
+                }
+        
+                .neighborhood {
+                    font-size: 1.2rem;
+                    margin: 5px 0;
+                    padding: 8px;
+                    background-color: #5997998f;
+                    border-left: 5px solid #b94fff;
+                    transition: all 0.3s ease;
+                }
+        
+                .neighborhood:hover {
+                    background-color: #f1f1f1;
+                    transform: scale(1.02);
+                }
+        
+                .north, .east, .south, .west {
+                    margin-bottom: 30px;
+                }
+        
+                .north {
+                    background-color:  #e5f4f5;
+                    padding: 15px;
+                    border-radius: 8px;
+                }
+                .back-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color:#0b7886;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+        </style>
+</head>
+<body>
+    <img src="logo grad.jpg" class="logo" alt="Logo">
+
+    <div class="directions">
+        <h2 class="title">Riyadh Neighborhoods</h2>
+
+
+        <div class="west">
+            <h3 class="subtitle">West Neighborhoods</h3>
+            <p class="neighborhood"><a href="Tuwaiq.html">Tuwaiq</a></p>
+            <p class="neighborhood">Al Urayja</p>
+            <p class="neighborhood">Al Badiyah</p>
+            <p class="neighborhood">Dhahret Al Badiyah</p>
+            <p class="neighborhood">Al Hada</p>
+            <p class="neighborhood">Al Suwaidi Al Gharbi</p>
+            <p class="neighborhood">King Saud University</p>
+            <p class="neighborhood">Shubra</p>
+            <p class="neighborhood">Dhahret Namar</p>
+            <p class="neighborhood">Al Diriyah</p>
+        </div>
+        <a href="Destination.html" class="back-btn">Back</a>
+
+    </div>
+    
+</body>
+</html>
