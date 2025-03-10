@@ -3,20 +3,12 @@
 <head>
     
     <title>Terms and Conditions</title>
+   
     <style>
-
-
-  
-body {
-        background: url('PNU.jpg'); /* أضفت صورة خلفية هنا */
-        background-size: cover;
-        font-family: sans-serif;
-        margin: 0;
-        padding: 0;
-    }
         body {
+            background: url('PNU.jpg'); /* صورة الخلفية */
+            background-size: cover;
             font-family: 'Arial', sans-serif;
-            background-color: #f1f1f1;
             margin: 0;
             padding: 0;
             display: flex;
@@ -25,10 +17,10 @@ body {
             height: 100vh;
         }
         .container {
-            max-width: 600px;
-            width: 100%;
+            width: 90%; /* العرض 90% لضمان تناسق الصفحة مع الشاشات الصغيرة */
+            max-width: 600px; /* الحد الأقصى للعرض */
             background: #ffffff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             text-align: right;
@@ -73,18 +65,28 @@ body {
         button:disabled {
             background-color: #ccc;
         }
-        .logo {
-            position: fixed;
-            top: 10px;  /* المسافة من أعلى الصفحة */
-            right: 10px; /* المسافة من اليمين */
-            width: 100px;  /* عرض الشعار */
-            height: 100px; /* ارتفاع الشعار */
-            z-index: 1000; /* التأكد من أن الشعار يكون فوق العناصر الأخرى */
+        
+        /* Media Queries for small screens */
+        @media (max-width: 1062px) {
+            .container {
+                width: 90%; /* العرض يصبح 90% على الشاشات الصغيرة */
+                padding: 15px;
+            }
+            h2 {
+                font-size: 20px; /* تقليل حجم العنوان */
+            }
+            p, ol {
+                font-size: 14px; /* تقليل حجم النصوص */
+            }
+            button {
+                font-size: 14px; /* تقليل حجم الخط في الأزرار */
+                padding: 10px 20px; /* تقليل حجم الأزرار */
+            }
         }
     </style>
 </head>
 <body>
-    <img src="logo grad.jpg" class="logo" alt="Logo">
+   
 
     <div class="container">
         <h2>Terms and Conditions</h2>
