@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -226,114 +225,140 @@
             }
         }
     </style>
-
-       
 </head>
 <body>
-    
     <h2 class="title">Driver - Send Notifications and Chat</h2>
-<div class="container">
-    
-    <div class="section">
-        <h2>Send Notifications</h2>
-        <div class="radio-group">
-            <label><input type="radio" name="status" value="The bus will be delayed"> The bus will be delayed</label>
-            <label><input type="radio" name="status" value="The bus is full"> The bus is full</label>
-            <div id="delay-time" style="display: none;">
-                <label for="delay-input">How many minutes will the bus be delayed?</label>
-                <input type="number" id="delay-input" placeholder="Enter minutes" min="1" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-top: 10px;">
+    <div class="container">
+        <!-- Send Notifications Section -->
+        <div class="section">
+            <h2>Send Notifications</h2>
+            <div class="radio-group">
+                <label><input type="radio" name="status" value="The bus will be delayed"> The bus will be delayed</label>
+                <label><input type="radio" name="status" value="The bus is full"> The bus is full</label>
+                <div id="delay-time" style="display: none;">
+                    <label for="delay-input">How many minutes will the bus be delayed?</label>
+                    <input type="number" id="delay-input" placeholder="Enter minutes" min="1" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-top: 10px;">
+                </div>
+            </div>
+            <button class="send-btn" onclick="sendNotification()">Send to all</button>
+        </div>
+
+        <!-- Chat Section -->
+        <div class="section">
+            <h2>Chat with Students</h2>
+            <div class="chat-container">
+                <div class="chat-header">Chat with the students</div>
+
+                <div class="chat-box" id="chatBox">
+                    <div class="message">Hello, please send me your location here</div>
+                </div>
+
+                <div class="chat-input">
+                    <input type="text" id="message-input" placeholder="Write your message...">
+                    <button onclick="sendMessage()">Send</button>
+                    <!-- Add button for sending live location -->
+                    <button onclick="startLiveTracking()">Start Live Location</button>
+                </div>
             </div>
         </div>
-        <button class="send-btn" onclick="sendNotification()">Send to all</button>
     </div>
 
-  
-    <div class="section">
-        <h2>Chat with Students</h2>
-        <div class="chat-container">
-            <div class="chat-header">Chat with the students</div>
-
-            <div class="chat-box" id="chatBox">
-                <div class="message">Hello, please send me your location here</div>
-            </div>
-
-            <div class="chat-input">
-                <input type="text" id="message-input" placeholder="Write your message...">
-                <button onclick="sendMessage()">Send</button>
-            </div>
-        </div>
+    <!-- Notification Popup -->
+    <div class="notification" id="notification">
+        <span>🚨 Sending the notification:</span> <span id="notificationText"></span>
+        <button onclick="closeNotification()" class="send-btn" style="margin-top:10px;">Agree</button>
     </div>
-</div>
 
-<div class="notification" id="notification">
-    <span>🚨 Sending the notification:</span> <span id="notificationText"></span>
-    <button onclick="closeNotification()" class="send-btn" style="margin-top:10px;">Agree</button>
-</div>
+    <script>
+        let watchId = null;  // Variable to store watch ID
 
-<script>
-    // Function to show delay input field when 'The bus will be delayed' is selected
-    document.querySelectorAll('input[name="status"]').forEach(function (radio) {
-        radio.addEventListener('change', function () {
-            if (this.value === "The bus will be delayed") {
-                document.getElementById("delay-time").style.display = "block";
-            } else {
-                document.getElementById("delay-time").style.display = "none";
-            }
-        });
-    });
-
-    // Function to send notification
-    function sendNotification() {
-        let selectedOption = document.querySelector('input[name="status"]:checked');
-        if (selectedOption) {
-            let notificationMessage = selectedOption.value;
-            if (selectedOption.value === "The bus will be delayed") {
-                let delayMinutes = document.getElementById("delay-input").value;
-                if (delayMinutes) {
-                    notificationMessage += " for " + delayMinutes + " minutes";
+        // Function to show delay input field when 'The bus will be delayed' is selected
+        document.querySelectorAll('input[name="status"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                if (this.value === "The bus will be delayed") {
+                    document.getElementById("delay-time").style.display = "block";
                 } else {
-                    alert("Please specify the delay time.");
-                    return;
+                    document.getElementById("delay-time").style.display = "none";
                 }
+            });
+        });
+
+        // Function to send notification
+        function sendNotification() {
+            let selectedOption = document.querySelector('input[name="status"]:checked');
+            if (selectedOption) {
+                let notificationMessage = selectedOption.value;
+                if (selectedOption.value === "The bus will be delayed") {
+                    let delayMinutes = document.getElementById("delay-input").value;
+                    if (delayMinutes) {
+                        notificationMessage += " for " + delayMinutes + " minutes";
+                    } else {
+                        alert("Please specify the delay time.");
+                        return;
+                    }
+                }
+                document.getElementById("notificationText").textContent = notificationMessage;
+                document.getElementById("notification").style.display = "block";
+            } else {
+                alert("Please select an option first.");
             }
-            document.getElementById("notificationText").textContent = notificationMessage;
-            document.getElementById("notification").style.display = "block";
-        } else {
-            alert("Please select an option first.");
         }
-    }
 
-    // Function to close notification popup
-    function closeNotification() {
-        document.getElementById("notification").style.display = "none";
-    }
-
-    // Function to send a chat message
-    function sendMessage() {
-        let messageInput = document.getElementById("message-input");
-        let chatBox = document.getElementById("chatBox");
-        if (messageInput.value.trim() !== "") {
-            let message = document.createElement("div");
-            message.className = "message";
-            message.textContent = messageInput.value;
-            chatBox.appendChild(message);
-            messageInput.value = "";
+        // Function to close notification popup
+        function closeNotification() {
+            document.getElementById("notification").style.display = "none";
         }
-    }
-   let studentCount = 0;
 
-    window.addEventListener("message", function (event) {
-        if (event.data === "studentRegistered") {
-            studentCount++;
-            let notificationBox = document.getElementById("studentNotification");
-            notificationBox.textContent = `🚨Student number was registered ${studentCount}`;
-            notificationBox.style.display = "block";
-            setTimeout(() => {
-                notificationBox.style.display = "none";
-            }, 5000);
+        // Function to send a chat message
+        function sendMessage() {
+            let messageInput = document.getElementById("message-input");
+            let chatBox = document.getElementById("chatBox");
+            if (messageInput.value.trim() !== "") {
+                let message = document.createElement("div");
+                message.className = "message";
+                message.textContent = messageInput.value;
+                chatBox.appendChild(message);
+                messageInput.value = "";
+            }
         }
-    });
-</script>
 
+        // Function to start sending live location updates
+        function startLiveTracking() {
+            if (navigator.geolocation) {
+                watchId = navigator.geolocation.watchPosition(function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const message = `🚍 The bus is moving! Current location: https://www.google.com/maps?q=${latitude},${longitude}`;
+                    sendChatMessage(message);
+                }, function () {
+                    alert("Unable to retrieve your location.");
+                }, {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Function to stop live tracking
+        function stopLiveTracking() {
+            if (watchId !== null) {
+                navigator.geolocation.clearWatch(watchId);
+                watchId = null;
+                alert("Live tracking stopped.");
+            }
+        }
+
+        // Function to send message (including live location)
+        function sendChatMessage(message) {
+            let chatBox = document.getElementById("chatBox");
+            let newMessage = document.createElement("div");
+            newMessage.className = "message";
+            newMessage.textContent = message;
+            chatBox.appendChild(newMessage);
+        }
+    </script>
 </body>
 </html>
