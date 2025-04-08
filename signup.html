@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -143,15 +144,17 @@
 <body>
   
 
-    <form class="signup">
+    <form class="signup" action="signup.php" method="POST">
+
+       
         <fieldset>
             <legend>User Information</legend>
             
-            <label for="Email">Email</label>
-            <input type="text" name="Email" required placeholder="Email" >
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required placeholder="Enter username">
 
             <label for="password">Password*</label>
-            <input type="password" name="psw" required>
+           <input type="password" name="password" required> 
 
             <label for="fname">First Name</label>
            <input type="text" name="fname" required placeholder="First name">
@@ -160,16 +163,16 @@
             <input type="text" name="lname" required placeholder="Last name">
 
             <label for="phone number">Phone Number</label>
-          <input type="text" name="phone number" required placeholder="+966">
+            <input type="text" name="phone">
 
             <div class="radio-section">
-                <input type="radio" id="Student" name="Professional level" value="Student">
+                <input type="radio" id="Student" name="professional_level" value="Student" required>
                 <label for="Student">Student</label>
-
-                <input type="radio" id="Employee" name="Professional level" value="Employee">
+            
+                <input type="radio" id="Employee" name="professional_level" value="Employee">
                 <label for="Employee">Employee</label>
-
-                <input type="radio" id="driver" name="Professional level" value="Driver">
+            
+                <input type="radio" id="driver" name="professional_level" value="Driver">
                 <label for="Driver">Driver</label>
             </div>
 
@@ -184,28 +187,16 @@
             <label for="n">Age</label>
             <input type="number" name="n" min="18" max="60" value="22">
 
+            <a href="Home.html">  
             <input type="submit" value="Sign Up">
+            </a>
         </fieldset>
     </form>
 
     <script>
-        document.querySelector('.signup input[type="submit"]').addEventListener('click', function (event) {
-            event.preventDefault();
-            window.location.href = "Home.html";
-        });
-
-        function loginCheck(event) {
-            event.preventDefault(); // لمنع إرسال النموذج بشكل افتراضي
-
-            // الحصول على البيانات المدخلة من المستخدم
-            const firstname = document.getElementById('firsname').value;
-            const lastname = document.getElementById('lastname').value;
-            const password = document.getElementById('password').value;
-            const Email = document.getElementById('Email').value;
-            const phonenumber = document.getElementById('phone number').value;
-
-
-        }
+       <form class="signup" action="signup.php" method="POST" onsubmit="window.location.href='Home.html'; return true;"></form>
+     
+      
     </script>
 
 </body>

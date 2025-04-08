@@ -138,21 +138,27 @@
 </head>
 
 <body>
-    
-    
 
     <div class="login">
         <img src="s1.png" alt="Profile Picture" class="profile-picture">
         <h1>Login</h1>
-       
+        <form action="Lstudent.php" method="POST" onsubmit="return validateForm()">
+
         <form onsubmit="return loginCheck(event)">
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" required placeholder="Enter Name">
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required placeholder="Enter Password">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required placeholder="Enter Name">
+            
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required placeholder="Enter Password">
+            
+                
+            </form>
+            
 
+            <a href="Terms and Condition.html">
             <input type="submit" value="Login" onmousedown="buttonPressed(event)" onmouseup="buttonReleased(event)">
+        </a>
         </form>
 
         <div class="signup">
@@ -170,18 +176,34 @@
         function buttonReleased() {
             const button = document.querySelector('input[type="submit"]');
             button.style.backgroundColor = '#107fac'; 
+        
+
+      
+           
+           
         }
 
-        function loginCheck(event) {
-            event.preventDefault(); // لمنع إرسال النموذج بشكل افتراضي
+        function validateForm() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    if(username.trim() === '' || password.trim() === '') {
+        alert('الرجاء إدخال جميع الحقول المطلوبة');
+        return false;
+    }
+    return true;
+}
 
-            // الحصول على البيانات المدخلة من المستخدم
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // بمجرد أن يضغط المستخدم على تسجيل الدخول، سيتم التوجيه إلى الصفحة الرئيسية دون التحقق من القيم
-            window.location.href = "Terms and Condition.html";
+        function buttonPressed() {
+            const button = document.querySelector('input[type="submit"]');
+            button.style.backgroundColor = 'Spring Green'; 
         }
+
+        function buttonReleased() {
+            const button = document.querySelector('input[type="submit"]');
+            button.style.backgroundColor = '#107fac'; 
+        }
+   
     </script>
 </body>
 

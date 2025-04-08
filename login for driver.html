@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,28 +141,30 @@
 
 <body>
     
-  
     
     <div class="login">
             <img src="d1.png" alt="Profile Picture" class="profile-picture">
     
         <h1>Login</h1>
-    
-        <form onsubmit="return loginCheck(event)">
+        <form class="driver" action="Ldriver.php" method="POST" onsubmit="loginCheck(event)">
+       
+            
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" required placeholder="Enter Name">
-
+        
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required placeholder="Enter Password">
-
-            <input type="submit" value="Login" onmousedown="buttonPressed(event)" onmouseup="buttonReleased(event)">
+    
+            <input type="submit" value="Login" id="loginBtn">
         </form>
+        
 
         <div class="signup">
             You don't have an account? <br>
             <a href="signup.html">signup</a>
         </div>
     </div>
+
 
     <script>
         function buttonPressed() {
@@ -181,9 +184,14 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // بمجرد أن يضغط المستخدم على تسجيل الدخول، سيتم التوجيه إلى الصفحة الرئيسية دون التحقق من القيم
-            window.location.href = "driver.html";
-        }
+
+    // هنا يمكنك إضافة التحقق من بيانات المستخدم
+    if(username && password) { // تحقق بسيط أن الحقول غير فارغة
+        window.location.href = "driver.html"; // التوجيه إلى الصفحة التالية
+    } else {
+        alert("Please enter both username and password");
+    }
+}
     </script>
 </body>
 

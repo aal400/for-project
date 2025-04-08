@@ -153,7 +153,6 @@
             text-align: center;
         }
 
-        /* استعلامات الوسائط للأجهزة المحمولة */
         @media (max-width: 1062px) and (max-height: 2100px) {
             .container {
                 flex-direction: column;
@@ -240,6 +239,7 @@
                     <input type="number" id="delay-input" placeholder="Enter minutes" min="1" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-top: 10px;">
                 </div>
             </div>
+            <!-- Removed duplicate button -->
             <button class="send-btn" onclick="sendNotification()">Send to all</button>
         </div>
 
@@ -248,29 +248,26 @@
             <h2>Chat with Students</h2>
             <div class="chat-container">
                 <div class="chat-header">Chat with the students</div>
-
                 <div class="chat-box" id="chatBox">
                     <div class="message">Hello, please send me your location here</div>
                 </div>
-
                 <div class="chat-input">
                     <input type="text" id="message-input" placeholder="Write your message...">
                     <button onclick="sendMessage()">Send</button>
-                    <!-- Add button for sending live location -->
                     <button onclick="startLiveTracking()">Start Live Location</button>
+                    <button onclick="stopLiveTracking()">Stop Live Location</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Notification Popup -->
-    <div class="notification" id="notification">
-        <span>🚨 Sending the notification:</span> <span id="notificationText"></span>
-        <button onclick="closeNotification()" class="send-btn" style="margin-top:10px;">Agree</button>
+        <div class="notification" id="notification">
+            <span>🚨 Sending the notification:</span> <span id="notificationText"></span>
+            <button onclick="closeNotification()" class="send-btn" style="margin-top:10px;">Agree</button>
+        </div>
     </div>
 
     <script>
-        let watchId = null;  // Variable to store watch ID
+        let watchId = null;
 
         // Function to show delay input field when 'The bus will be delayed' is selected
         document.querySelectorAll('input[name="status"]').forEach(function (radio) {
@@ -297,8 +294,17 @@
                         return;
                     }
                 }
-                document.getElementById("notificationText").textContent = notificationMessage;
-                document.getElementById("notification").style.display = "block";
+
+                // Send data to PHP using AJAX
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "driver_notify.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        alert(xhr.responseText);  // Display response from the server
+                    }
+                };
+                xhr.send("status=" + encodeURIComponent(notificationMessage));
             } else {
                 alert("Please select an option first.");
             }

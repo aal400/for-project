@@ -151,14 +151,16 @@
         <img src="b1.png" alt="Profile Picture" class="profile-picture">
         <h1>Login</h1>
         
+        <form action="Lsupervisor.php" method="POST" onsubmit="return validateForm()"></form>
         <form onsubmit="return loginCheck(event)">
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" required placeholder="Enter Name">
 
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required placeholder="Enter Password">
-
+            <a href="Suprvisor.html">
             <input type="submit" value="Login" onmousedown="buttonPressed(event)" onmouseup="buttonReleased(event)">
+            </a>
         </form>
 
         <div class="signup">
@@ -188,6 +190,17 @@
             // بمجرد أن يضغط المستخدم على تسجيل الدخول، سيتم التوجيه إلى الصفحة الرئيسية دون التحقق من القيم
             window.location.href = "Suprvisor.html";
         }
+
+        function validateForm() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    if(username.trim() === '' || password.trim() === '') {
+        alert('الرجاء إدخال جميع الحقول المطلوبة');
+        return false;
+    }
+    return true;
+}
     </script>
 </body>
 

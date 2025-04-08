@@ -76,7 +76,7 @@
         .back-btn {
             display: inline-block;
             padding: 12px 25px;
-            background-color: #0b7886;
+            background-color:#45a049 ;
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -114,35 +114,36 @@
             <textarea id="message-driver" rows="4" placeholder="Type your message for the driver..."></textarea>
             <button class="send-notification-btn" onclick="sendNotificationToDriver()">Send Notification to Driver</button>
         </div>
-
+        <a href="Driver Attendance.html" class="back-btn">Attend</a>
       
     </div>
 
     <script>
-        // Function to send notification to all students
-        function sendNotificationToStudents() {
-            var message = document.getElementById("message-students").value;
-
+        // دالة مشتركة لإرسال إشعار
+        function sendNotification(messageId, alertMessage) {
+            var message = document.getElementById(messageId).value;
+    
             if (message.trim() === "") {
-                alert("Please enter a message before sending.");
+                alert(alertMessage);
             } else {
-                alert("Notification sent to all students: " + message);
-                // Here, you can also implement AJAX or a backend API call to actually send the notification to all students.
+                // هنا يمكن إضافة الكود لإرسال النموذج أو القيام بأي إجراء آخر
+                alert("Message sent successfully!");
+                // إذا كنت تستخدم نموذجًا، يمكنك استخدام:
+                // document.getElementById("yourFormId").submit();
             }
         }
-
-        // Function to send notification to driver
+    
+        // دالة لإرسال إشعار للطلاب
+        function sendNotificationToStudents() {
+            sendNotification("message-students", "Please enter a message before sending.");
+        }
+    
+        // دالة لإرسال إشعار للسائق
         function sendNotificationToDriver() {
-            var message = document.getElementById("message-driver").value;
-
-            if (message.trim() === "") {
-                alert("Please enter a message for the driver.");
-            } else {
-                alert("Notification sent to Driver: " + message);
-                // Again, implement AJAX or a backend API call for actual functionality.
-            }
+            sendNotification("message-driver", "Please enter a message for the driver.");
         }
     </script>
+    
 
 </body>
 </html>
