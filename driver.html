@@ -265,105 +265,146 @@
             <button onclick="closeNotification()" class="send-btn" style="margin-top:10px;">Agree</button>
         </div>
     </div>
-
     <script>
         let watchId = null;
-
-        // Function to show delay input field when 'The bus will be delayed' is selected
-        document.querySelectorAll('input[name="status"]').forEach(function (radio) {
-            radio.addEventListener('change', function () {
-                if (this.value === "The bus will be delayed") {
-                    document.getElementById("delay-time").style.display = "block";
-                } else {
-                    document.getElementById("delay-time").style.display = "none";
+        let studentCount = 0;
+    
+        // Initialize event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show/hide delay input based on radio selection
+            document.querySelectorAll('input[name="status"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    document.getElementById("delay-time").style.display = 
+                        this.value === "The bus will be delayed" ? "block" : "none";
+                });
+            });
+    
+            // Add event listener for Enter key in chat input
+            document.getElementById("message-input").addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
                 }
             });
         });
-
-        // Function to send notification
-        function sendNotification() {
-            let selectedOption = document.querySelector('input[name="status"]:checked');
-            if (selectedOption) {
-                let notificationMessage = selectedOption.value;
-                if (selectedOption.value === "The bus will be delayed") {
-                    let delayMinutes = document.getElementById("delay-input").value;
-                    if (delayMinutes) {
-                        notificationMessage += " for " + delayMinutes + " minutes";
-                    } else {
-                        alert("Please specify the delay time.");
-                        return;
-                    }
+    
+        // Handle student registration messages
+        window.addEventListener("message", function(event) {
+            if (event.data === "studentRegistered") {
+                studentCount++;
+                const notificationBox = document.getElementById("studentNotification");
+                if (notificationBox) {
+                    notificationBox.textContent = `🚨 New student registered (Total: ${studentCount})`;
+                    notificationBox.style.display = "block";
+                    setTimeout(() => {
+                        notificationBox.style.display = "none";
+                    }, 5000);
                 }
-
-                // Send data to PHP using AJAX
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST", "driver_notify.php", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        alert(xhr.responseText);  // Display response from the server
-                    }
-                };
-                xhr.send("status=" + encodeURIComponent(notificationMessage));
-            } else {
+            }
+        });
+    
+        // Send notification function
+        async function sendNotification() {
+            const selectedOption = document.querySelector('input[name="status"]:checked');
+            if (!selectedOption) {
                 alert("Please select an option first.");
+                return;
+            }
+    
+            let notificationMessage = selectedOption.value;
+            if (selectedOption.value === "The bus will be delayed") {
+                const delayMinutes = document.getElementById("delay-input").value;
+                if (!delayMinutes) {
+                    alert("Please specify the delay time.");
+                    return;
+                }
+                notificationMessage += ` for ${delayMinutes} minutes`;
+            }
+    
+            try {
+                // Show notification immediately for better UX
+                document.getElementById("notificationText").textContent = notificationMessage;
+                document.getElementById("notification").style.display = "block";
+    
+                // Send to server (if you have backend functionality)
+                // const response = await fetch('driver_notify.php', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/x-www-form-urlencoded',
+                //     },
+                //     body: 'status=' + encodeURIComponent(notificationMessage)
+                // });
+                // if (!response.ok) throw new Error('Failed to send notification');
+    
+            } catch (error) {
+                console.error('Notification error:', error);
+                alert('Failed to send notification: ' + error.message);
             }
         }
-
-        // Function to close notification popup
+    
+        // Close notification popup
         function closeNotification() {
             document.getElementById("notification").style.display = "none";
         }
-
-        // Function to send a chat message
+    
+        // Send chat message
         function sendMessage() {
-            let messageInput = document.getElementById("message-input");
-            let chatBox = document.getElementById("chatBox");
-            if (messageInput.value.trim() !== "") {
-                let message = document.createElement("div");
-                message.className = "message";
-                message.textContent = messageInput.value;
-                chatBox.appendChild(message);
-                messageInput.value = "";
-            }
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value.trim();
+            if (!message) return;
+    
+            const chatBox = document.getElementById("chatBox");
+            const messageElement = document.createElement("div");
+            messageElement.className = "message";
+            messageElement.textContent = message;
+            chatBox.appendChild(messageElement);
+            
+            messageInput.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
-
-        // Function to start sending live location updates
+    
+        // Live location tracking
         function startLiveTracking() {
-            if (navigator.geolocation) {
-                watchId = navigator.geolocation.watchPosition(function (position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    const message = `🚍 The bus is moving! Current location: https://www.google.com/maps?q=${latitude},${longitude}`;
-                    sendChatMessage(message);
-                }, function () {
-                    alert("Unable to retrieve your location.");
-                }, {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                });
-            } else {
+            if (!navigator.geolocation) {
                 alert("Geolocation is not supported by this browser.");
+                return;
             }
+    
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+    
+            watchId = navigator.geolocation.watchPosition(
+                position => {
+                    const { latitude, longitude } = position.coords;
+                    const message = `🚍 Live location: https://www.google.com/maps?q=${latitude},${longitude}`;
+                    sendChatMessage(message);
+                },
+                error => {
+                    alert(`Location error: ${error.message}`);
+                },
+                options
+            );
         }
-
-        // Function to stop live tracking
+    
         function stopLiveTracking() {
-            if (watchId !== null) {
+            if (watchId) {
                 navigator.geolocation.clearWatch(watchId);
                 watchId = null;
-                alert("Live tracking stopped.");
+                sendChatMessage("Live tracking stopped.");
             }
         }
-
-        // Function to send message (including live location)
+    
         function sendChatMessage(message) {
-            let chatBox = document.getElementById("chatBox");
-            let newMessage = document.createElement("div");
-            newMessage.className = "message";
-            newMessage.textContent = message;
-            chatBox.appendChild(newMessage);
+            const chatBox = document.getElementById("chatBox");
+            if (!chatBox) return;
+    
+            const messageElement = document.createElement("div");
+            messageElement.className = "message";
+            messageElement.textContent = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
     </script>
 </body>
